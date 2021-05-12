@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Control de Expedientes</title>
+
+    <!--ESTILOS CSS BOOTSTRAP-->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!--ESTILOS CSS ICONOS FONTAWESOME-->
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/brands.css">
+    <!--ESTILOS Sweet Alert-->
+    <link rel="stylesheet" href="../assets/plugins/SweetAlert/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="text-white text-center">Gestionar Expedientes</h3>
+            </div>
+            <div class="card-body">
+                <input type="hidden" name="idExpediente" id="idExpediente">
+
+                <div class="row">
+                    <div class="btn-group-sm col-">
+                        <button class="btn btn-outline-info" onclick="Consultar();"><span class="fa fa-search"></span> Consultar</button>
+                        <button class="btn btn-outline-info" id="guardar" onclick="Guardar();"><span class="fa fa-save"></span> Guardar</button>
+                        <button class="btn btn-outline-info" id="modificar" onclick="Modificar();" disabled="true"><span class="fa fa-pencil-alt"></span> Modificar</button>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <label for="id_num_exp">#</label>
+                        <input type="number" name="id_num_exp" id="id_num_exp" placeholder="Escriba el número de expediente" class="form-control" autofocus>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="num_fol_exp">Nombre de Expedientes:</label>
+                        <input type="text" name="num_fol_exp" id="num_fol_exp" placeholder="Nombre del expediente" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="hora_p_circula">Hora:</label>
+                        <input type="time" name="hora_p_circula" id="hora_p_circula" placeholder="Por favor digite su dirección" class="form-control text-center">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="p_circula">Ponencia que circula:</label>
+                        <select name="p_circula" id="p_circula">
+                            <option value="Elije una ponencia">Seleccionar una opción</option>
+                            <option value="CSJRO">CSJRO</option>
+                            <option value="GGBG">GGBG</option>
+                            <option value="AKBA">AKBA</option>
+                        </select>
+                        
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <label for="tipo">Acuerdo/Sentencia:</label>
+                        <select name="tipo" id="tipo">
+                            <option value="Elije un tipo">Seleccionar una opción</option>
+                            <option value="Acuerdo">Acuerdo</option>
+                            <option value="Sentencia">Sentencia</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dp">Nor/DP:</label>
+                        <select name="dp" id="dp">
+                            <option value="Elije un tipo">Seleccionar una opción</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Dato_Protegido">Dato_Protegido</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <label for="p1_recibe">Ponencia que recibe:</label>
+                        <select name="p1_recibe" id="p1_recibe">
+                            <option value="Elije una ponencia">Seleccionar una opción</option>
+                            <option value="CSJRO">CSJRO</option>
+                            <option value="GGBG">GGBG</option>
+                            <option value="AKBA">AKBA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="p1_c_recibe">Nombre de quien recibe:</label>
+                        <input type="text" name="p1_c_recibe" id="p1_c_recibe" placeholder="Nombre de quien recibe" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="hora_p1_recibe">Hora de Circulación:</label>
+                        <input type="time" name="hora_p1_recibe" id="hora_p1_recibe" placeholder="Por favor digite su dirección" class="form-control text-center">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <label for="p2_recibe">Ponencia que recibe:</label>
+                        <select name="p2_recibe" id="p2_recibe">
+                            <option value="Elije una ponencia">Seleccionar una opción</option>
+                            <option value="CSJRO">CSJRO</option>
+                            <option value="GGBG">GGBG</option>
+                            <option value="AKBA">AKBA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="p2_c_recibe">Nombre de quien recibe:</label>
+                        <input type="text" name="p2_c_recibe" id="p2_c_recibe" placeholder="Nombre de quien recibe" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="hora_p2_recibe">Hora de Circulación:</label>
+                        <input type="time" name="hora_p2_recibe" id="hora_p2_recibe" placeholder="Por favor digite su dirección" class="form-control text-center">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <label for="p3_recibe">Ponencia que recibe:</label>
+                        <select name="p3_recibe" id="p3_recibe">
+                            <option value="Elije una ponencia">Seleccionar una opción</option>
+                            <option value="CSJRO">CSJRO</option>
+                            <option value="GGBG">GGBG</option>
+                            <option value="AKBA">AKBA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="p3_c_recibe">Nombre de quien recibe:</label>
+                        <input type="text" name="p3_c_recibe" id="p3_c_recibe" placeholder="Nombre de quien recibe" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="hora_p3_recibe">Hora de Circulación:</label>
+                        <input type="time" name="hora_p3_recibe" id="hora_p3_recibe" placeholder="Por favor digite su dirección" class="form-control text-center">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <table class="table table-striped table-responsive" id="tablaExpedientes">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Exp</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Pon</th>
+                            <th>Ac/Sent</th>
+                            <th>Nor/Dp</th>
+                            <th>P_rec</th>
+                            <th>N_rec</th>
+                            <th>Hora</th>
+                            <th>P_rec</th>
+                            <th>N_rec</th>
+                            <th>Hora</th>
+                            <th>P_rec</th>
+                            <th>N_rec</th>
+                            <th>Hora</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+<?php
+
+?>
+</body>
+<!-- JAVASCRIPT -->
+<script src="../assets/js/all.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.js"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="../js/expediente.js"></script>
+<script src="../assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
+
+
+</html>
